@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Vandana ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .box {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  h1 {
+    color: #ff3b6f;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 8px;
+  }
+
+  .btn {
+    background: #ff3b6f;
+    color: white;
+  }
+
+  .btn2 {
+    background: #ff9fb3;
+    color: white;
+  }
+
+  .btn3 {
+    background: #ffd1dc;
+  }
+
+  #no {
+    background: #ccc;
+    position: absolute;
+  }
+
+  #finalMsg {
+    display: none;
+  }
+
+  .surprise {
+    margin-top: 15px;
+    color: #ff3b6f;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="screen1">
+  <h1>Hey Vandana 👀❤️</h1>
+  <p>I made this just for you…</p>
+  <p>Promise you won’t rush? 😌</p>
+  <button class="btn" onclick="next(2)">Okay 🙈</button>
+</div>
+
+<div class="box" id="screen2" style="display:none">
+  <p>First question 😏</p>
+  <p>When you see my name pop up, what do you feel?</p>
+  <button class="btn" onclick="next(3)">Smile 😊</button>
+  <button class="btn2" onclick="next(3)">Curious 👀</button>
+  <button class="btn3" onclick="next(3)">Both 🙈</button>
+</div>
+
+<div class="box" id="screen3" style="display:none">
+  <p>Be honest now…</p>
+  <p>Who comes to your mind when you’re low?</p>
+  <button class="btn" onclick="next(4)">You 😌</button>
+  <button class="btn2" onclick="next(4)">Depends 🤭</button>
+</div>
+
+<div class="box" id="screen4" style="display:none">
+  <p>Important one 😶‍🌫️</p>
+  <p>Do I matter to you?</p>
+  <button class="btn" onclick="next(5)">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<div class="box" id="screen5" style="display:none">
+  <p>One last thing…</p>
+  <p>If I was in front of you right now, what would you choose?</p>
+  <button class="btn" onclick="final()">A hug 🫂</button>
+  <button class="btn2" onclick="final()">A kiss 😘</button>
+</div>
+
+<div class="box" id="finalMsg">
+  <h1>Happy Birthday Vandana 🎂💖</h1>
+
+  <p>
+    I don’t know how or when this happened…<br>
+    but you slowly became someone<br>
+    I genuinely care about.
+    <br><br>
+    Your smile, your presence,<br>
+    the way you exist — it all means a lot to me.
+  </p>
+
+  <p><b>
+    On your special day, I just want you to know this:<br><br>
+    I will always love you 🤍<br>
+    Always.
+  </b></p>
+
+  <div class="surprise"
+       onclick="openSurprise()">
+    🎁 I have a surprise for you, click here
+  </div>
+</div>
+
+<script>
+  function next(n) {
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById("screen" + i);
+      if (el) el.style.display = "none";
+    }
+    document.getElementById("screen" + n).style.display = "block";
+  }
+
+  function moveNo() {
+    const no = document.getElementById("no");
+    no.style.top = Math.random() * 80 + "vh";
+    no.style.left = Math.random() * 80 + "vw";
+  }
+
+  function final() {
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById("screen" + i);
+      if (el) el.style.display = "none";
+    }
+    document.getElementById("finalMsg").style.display = "block";
+  }
+
+  function openSurprise() {
+    window.open(
+      "https://drive.google.com/uc?export=view&id=18Zz6q-ndAbe6RcsosuAFAOxeMELFdqeS",
+      "_blank"
+    );
+  }
+</script>
+
+</body>
+</html>
