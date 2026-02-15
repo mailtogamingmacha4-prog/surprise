@@ -2,118 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Valentine's Day ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For vandanaa ❤️</title>
 
 <style>
-
 body {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
     text-align: center;
     color: white;
-    padding: 30px;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
 }
 
-.box {
-    background: rgba(0,0,0,0.35);
-    padding: 25px;
-    border-radius: 15px;
-    display: inline-block;
-    max-width: 400px;
+.container {
+    padding: 30px;
 }
 
 button {
-    padding: 12px 20px;
+    padding: 12px 25px;
     margin: 10px;
+    font-size: 18px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    background: white;
+    border-radius: 10px;
+    background-color: white;
     color: #ff4d6d;
-    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #ffe0e6;
+    transform: scale(1.1);
 }
 
 .hidden {
     display: none;
-    margin-top: 20px;
-    font-size: 18px;
 }
 
-#result {
-    margin-top: 15px;
-    font-weight: bold;
+.fade {
+    animation: fadeIn 1.5s;
 }
 
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Floating hearts */
 .heart {
     position: fixed;
-    top: -10px;
-    font-size: 20px;
-    animation: fall linear forwards;
+    bottom: -10px;
+    color: red;
+    animation: floatUp 5s linear infinite;
 }
 
-@keyframes fall {
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
     to {
-        transform: translateY(100vh);
+        transform: translateY(-100vh);
         opacity: 0;
     }
 }
 
+video, iframe {
+    border-radius: 15px;
+    margin-top: 20px;
+}
 </style>
 
 </head>
 <body>
 
-<div class="box">
+<div class="container">
 
-<h2>Hi Vandanaa ❤️</h2>
-
-<p>Answer these honestly 😌</p>
-
-<div id="q1">
-<p>Do you know how special you are to me?</p>
-<button onclick="next('q2')">Yes ❤️</button>
-<button onclick="next('q2')">Maybe 😌</button>
+<!-- Page 1 -->
+<div id="page1" class="fade">
+<h1>Happy Valentine's Day vandanaa ❤️</h1>
+<p>I made something special for you...</p>
+<button onclick="nextPage('page1','page2')">Start</button>
 </div>
 
-<div id="q2" class="hidden">
-<p>Did you ever imagine someone would love you this much?</p>
-<button onclick="next('q3')">Yes 💕</button>
-<button onclick="next('q3')">No 😳</button>
+<!-- Page 2 -->
+<div id="page2" class="hidden fade">
+<h2>Do you know how special you are to me? 🥺</h2>
+<button onclick="nextPage('page2','page3')">Yes</button>
+<button onclick="nextPage('page2','page3')">No</button>
 </div>
 
-<div id="q3" class="hidden">
-<p>Do you want a kiss? 😌</p>
-<button onclick="next('q4')">Yes obviously 😘</button>
-<button onclick="next('q4')">Maybe... 👀</button>
+<!-- Page 3 -->
+<div id="page3" class="hidden fade">
+<h2>Do you want a kiss? 😚</h2>
+<button onclick="nextPage('page3','page4')">Yes</button>
+<button onclick="nextPage('page3','page4')">No</button>
 </div>
 
-<div id="q4" class="hidden">
+<!-- Page 4 -->
+<div id="page4" class="hidden fade">
+<h2>Whose kiss do you want? ☀️❤️</h2>
 
-<p>Whose kiss do you want?</p>
+<button onclick="sunKiss()">Sun kiss ☀️</button>
 
-<button onclick="wrongAnswer()">Sun’s kiss ☀️</button>
+<button onclick="myKiss()">My kiss 😘</button>
 
-<button onclick="correctAnswer()">My kiss 😘</button>
-
-<p id="result"></p>
-
+<p id="sunMsg" style="color:yellow;"></p>
 </div>
 
-<div id="final" class="hidden">
+<!-- Page 5 -->
+<div id="page5" class="hidden fade">
+<h2>Happy Valentine's Day vandanaa ❤️</h2>
 
-<p id="typedText"></p>
+<p style="font-size:20px; max-width:600px; margin:auto;">
+i know i am one day late to send this,<br><br>
 
-<br><br>
+but it doesnt matter because no matter when,<br><br>
 
-<a href="https://drive.google.com/uc?export=view&id=1VMFr3F7cfsIWUFxpU2Kvoh76j10T8MAy" target="_blank">
-<button>🎬 Click here for your final surprise</button>
-</a>
+today or tomorrow,<br><br>
+
+i always love you ❤️
+</p>
+
+<br>
+
+<h3>I have a final surprise for you 🎬</h3>
+
+<iframe 
+src="https://drive.google.com/file/d/1VMFr3F7cfsIWUFxpU2Kvoh76j10T8MAy/preview"
+width="90%"
+height="315"
+allow="autoplay">
+</iframe>
 
 </div>
 
@@ -121,71 +142,35 @@ button:hover {
 
 <script>
 
-function next(id) {
-    hideAll();
-    document.getElementById(id).style.display = "block";
+function nextPage(current, next) {
+    document.getElementById(current).classList.add("hidden");
+    document.getElementById(next).classList.remove("hidden");
 }
 
-function hideAll() {
-    document.getElementById("q1").style.display = "none";
-    document.getElementById("q2").style.display = "none";
-    document.getElementById("q3").style.display = "none";
-    document.getElementById("q4").style.display = "none";
+function sunKiss() {
+    document.getElementById("sunMsg").innerHTML = "Wrong answer 😌 I am the only one allowed to kiss you ❤️";
 }
 
-function wrongAnswer() {
-    document.getElementById("result").innerHTML = "Wrong answer 😏 Try again";
+function myKiss() {
+    createHearts();
+    nextPage('page4','page5');
 }
 
-function correctAnswer() {
-    document.getElementById("result").innerHTML = "Correct choice ❤️";
-    
-    setTimeout(function() {
-        document.getElementById("q4").style.display = "none";
-        document.getElementById("final").style.display = "block";
-        startTyping();
-    }, 1500);
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+
+    }, 300);
 }
-
-var message = "I know I am one day late to send this...\n\nBut it doesn’t matter because no matter when — today or tomorrow —\n\nI always love you ❤️\n\nHappy Valentine’s Day Vandanaa 💖";
-
-var index = 0;
-
-function startTyping() {
-
-    if(index < message.length) {
-
-        document.getElementById("typedText").innerHTML += message.charAt(index);
-
-        index++;
-
-        setTimeout(startTyping, 40);
-
-    }
-
-}
-
-function createHeart() {
-
-    var heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * 100 + "vw";
-
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(function() {
-        heart.remove();
-    }, 5000);
-
-}
-
-setInterval(createHeart, 300);
 
 </script>
 
