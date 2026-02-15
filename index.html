@@ -3,51 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Valentine's Day ❤️</title>
+
 <style>
-    body {
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        font-family: Arial, sans-serif;
-        text-align: center;
-        color: white;
-        padding: 40px;
-    }
 
-    .box {
-        background: rgba(0,0,0,0.3);
-        padding: 25px;
-        border-radius: 15px;
-        display: inline-block;
-        max-width: 420px;
-    }
+body {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    padding: 30px;
+    overflow-x: hidden;
+}
 
-    button {
-        padding: 12px 20px;
-        margin: 10px;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        background: white;
-        color: #ff4d6d;
-        font-weight: bold;
-    }
+.box {
+    background: rgba(0,0,0,0.35);
+    padding: 25px;
+    border-radius: 15px;
+    display: inline-block;
+    max-width: 400px;
+}
 
-    button:hover {
-        background: #ffe0e6;
-    }
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    background: white;
+    color: #ff4d6d;
+    font-weight: bold;
+}
 
-    .hidden {
-        display: none;
-        margin-top: 20px;
-        font-size: 18px;
-    }
+button:hover {
+    background: #ffe0e6;
+}
 
-    a {
-        color: yellow;
-        font-weight: bold;
-        text-decoration: none;
+.hidden {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+img {
+    margin-top: 15px;
+    border-radius: 15px;
+    width: 250px;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
     }
+}
+
 </style>
+
 </head>
 <body>
 
@@ -55,7 +79,7 @@
 
 <h2>Hi Vandana ❤️</h2>
 
-<p>Before anything... answer these honestly 😌</p>
+<p>Answer these honestly 😌</p>
 
 <div id="q1">
 <p>Do you know how special you are to me?</p>
@@ -76,42 +100,102 @@
 </div>
 
 <div id="q4" class="hidden">
+
 <p>Whose kiss do you want?</p>
-<p>☀️ Sun’s kiss or 😘 My kiss?</p>
-<button onclick="next('final')">Sun’s kiss ☀️</button>
-<button onclick="next('final')">Your kiss 😘</button>
+
+<button onclick="wrongAnswer()">Sun’s kiss ☀️</button>
+
+<button onclick="correctAnswer()">My kiss 😘</button>
+
+<p id="result"></p>
+
 </div>
 
 <div id="final" class="hidden">
-<p>
 
-I know I am one day late to send this,<br><br>
+<p id="typedText"></p>
 
-But it doesn’t matter because no matter when — today or tomorrow —<br><br>
+<button onclick="showImage()">Click here for your final surprise 🎁</button>
 
-I always love you ❤️<br><br>
+<br>
 
-Happy Valentine’s Day, Vandana 💖<br><br>
+<img id="finalImage" class="hidden"
+src="https://drive.google.com/uc?export=view&id=1VMFr3F7cfsIWUFxpU2Kvoh76j10T8MAy">
 
-<a href="https://drive.google.com/file/d/18Zz6q-ndAbe6RcsosuAFAOxeMELFdqeS/view?usp=drivesdk" target="_blank">
-Click here, I have something for you 🎁
-</a>
-
-</p>
 </div>
 
 </div>
 
 <script>
-function next(id) {
-    document.getElementById("q1").style.display = "none";
-    document.getElementById("q2").style.display = "none";
-    document.getElementById("q3").style.display = "none";
-    document.getElementById("q4").style.display = "none";
-    document.getElementById("final").style.display = "none";
 
+function next(id) {
+    hideAll();
     document.getElementById(id).style.display = "block";
 }
+
+function hideAll() {
+    document.getElementById("q1").style.display="none";
+    document.getElementById("q2").style.display="none";
+    document.getElementById("q3").style.display="none";
+    document.getElementById("q4").style.display="none";
+}
+
+function wrongAnswer() {
+    document.getElementById("result").innerHTML = "Wrong answer 😏 Try again";
+}
+
+function correctAnswer() {
+    document.getElementById("result").innerHTML = "Correct choice ❤️";
+    
+    setTimeout(function() {
+        document.getElementById("q4").style.display="none";
+        document.getElementById("final").style.display="block";
+        typeText();
+    }, 1500);
+}
+
+function showImage() {
+    document.getElementById("finalImage").style.display="block";
+}
+
+var text = "I know I am one day late to send this...\\n\\nBut it doesn’t matter because no matter when — today or tomorrow —\\n\\nI always love you ❤️\\n\\nHappy Valentine’s Day Vandana 💖";
+
+var i = 0;
+
+function typeText() {
+
+    if(i < text.length) {
+
+        document.getElementById("typedText").innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typeText, 40);
+
+    }
+
+}
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+
+}
+
+setInterval(createHeart, 300);
+
 </script>
 
 </body>
